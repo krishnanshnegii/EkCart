@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - EkCart</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<nav>
+    <div class="nav-content">
+        <a href="index.html" class="logo" style="text-decoration: none;">EkCart</a>
+
+        <div class="nav-links">
+            <a href="#" class="btn-login">Login</a>
+            <div class="hamburger" id="mainHamburger" onclick="toggleMenu()">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <div class="menu-header">
+        <span>Menu</span>
+        <button class="close-btn" onclick="toggleMenu()">&times;</button>
+    </div>
+    <div class="menu-links">
+        <a href="index.html">Home</a>
+        <a href="#">Login</a>
+        <a href="#">Sign Up</a>
+    </div>
+</div>
+
+<div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
+<main class="support-main">
+    <section class="support-hero">
+        <h1>How can we help you?</h1>
+    </section>
+
+    <div class="support-grid" style="display: flex; justify-content: center;">
+        <div class="support-card priority-card" style="max-width: 400px; width: 100%;">
+            <i class="fas fa-bolt"></i>
+            <h3>Support</h3>
+            <p>Get connected to solve your issues regarding EkCart.</p>
+            <a href="https://youtu.be/Aq5WXmQQooo?si=jSolLmNd_llfdW_j" target="_blank" class="rick-roll-btn">Connect Now</a>
+        </div>
+    </div>
+
+    <section class="contact-inquiry">
+        <h2>General Inquiries</h2>
+        <p>For business proposals or specific questions, reach out via email:</p>
+        <a href="mailto:support@ekcart.com" class="support-email">support@ekcart.com</a>
+    </section>
+</main>
+
+<footer>
+    <p class="design-credit">Designed by <span class="name">Maneesh</span> & <span class="name">Krishnansh</span></p>
+    <p class="code-credit">Produced by ☕ & <span>Code</span></p>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

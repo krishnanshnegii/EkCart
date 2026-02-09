@@ -1,0 +1,170 @@
+/* ===========================
+   1. CUSTOM FONTS & VARS
+   =========================== */
+@font-face { font-family: 'Linotte'; src: url('LinotteRegular.otf') format('opentype'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'Linotte'; src: url('LinotteSemiBold.otf') format('opentype'); font-weight: 700; font-style: normal; }
+
+:root {
+    --primary: #ffffff;
+    --bg-color: #000000;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --nav-bg: rgba(0, 0, 0, 0.8);
+    --input-bg: #222222;
+    --text-main: #ffffff;
+    --text-muted: #94a3b8;
+    --price-green: #34d399;
+    --border-color: #333333;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Linotte', sans-serif; }
+
+html, body {
+    margin: 0; padding: 0; width: 100%;
+    overflow-x: hidden;
+    background: radial-gradient(circle at 50% 0%, #1e1b4b, #000000 80%);
+    background-attachment: fixed;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    display: flex; flex-direction: column; min-height: 100vh;
+}
+
+/* Scroll Lock */
+html.menu-open, body.menu-open {
+    overflow: hidden !important;
+    height: 100vh !important;
+    touch-action: none !important;
+}
+
+/* ===========================
+   3. NAVBAR STYLES
+   =========================== */
+nav {
+    background: var(--nav-bg); 
+    backdrop-filter: blur(12px);
+    padding: 10px 0; 
+    position: sticky; top: 0; 
+    z-index: 100; 
+    border-bottom: 1px solid var(--glass-border);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+.nav-content { 
+    width: 100%; padding: 0 40px; 
+    display: flex; align-items: center; justify-content: space-between; 
+    flex-wrap: wrap; gap: 10px; 
+}
+
+.logo { font-size: 1.6rem; font-weight: 700; color: var(--primary); white-space: nowrap; flex: 0 0 auto; text-shadow: 0 0 15px rgba(255, 255, 255, 0.4); }
+
+.nav-search-container {
+    flex: 0 1 600px; display: flex; align-items: center; background: var(--input-bg);
+    border-radius: 8px; padding: 5px;
+}
+.nav-search-container input { flex: 1; border: none; background: transparent; padding: 10px 15px; font-size: 0.95rem; outline: none; color: var(--text-main); }
+.nav-search-container button { background: var(--primary); color: black !important; padding: 10px 20px; border-radius: 6px; cursor: pointer; border: none; font-weight: 700; }
+
+.nav-links { 
+    flex: 0 0 auto; 
+    display: flex; 
+    align-items: center; 
+    gap: 20px; 
+}
+.btn-login { background-color: var(--text-main); color: black !important; padding: 8px 20px; border-radius: 6px; font-weight: 600; text-decoration: none; }
+
+.hamburger { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 5px; 
+    cursor: pointer; 
+    padding: 5px; 
+}
+.line { width: 25px; height: 3px; background-color: var(--primary); border-radius: 5px; transition: 0.3s ease-in-out; }
+
+/* Hamburger Active Animation */
+.hamburger.active .line:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.hamburger.active .line:nth-child(2) { opacity: 0; }
+.hamburger.active .line:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+/* ===========================
+   4. MENU DRAWER STYLES
+   =========================== */
+.mobile-menu {
+    position: fixed; top: 0; right: 0; width: 280px; height: 100%;
+    background-color: #000; z-index: 1001; transform: translateX(100%);
+    transition: transform 0.3s ease-in-out; padding: 20px;
+}
+.mobile-menu.active { transform: translateX(0); }
+.menu-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--glass-border); padding-bottom: 15px; margin-bottom: 20px; }
+.close-btn { background: none; border: none; color: white; font-size: 2rem; cursor: pointer; }
+.menu-links { display: flex; flex-direction: column; gap: 20px; }
+.menu-links a { color: white; text-decoration: none; font-size: 1.1rem; font-weight: 600; }
+
+.menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 1000; display: none; }
+.menu-overlay.active { display: block; }
+
+/* ===========================
+   5. UI COMPONENTS
+   =========================== */
+.slider-container { width: 100%; max-width: 1200px; height: 400px; margin: 40px auto; border-radius: 20px; position: relative; overflow: hidden; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); }
+.slider-wrapper { display: flex; transition: transform 0.5s ease-in-out; }
+.slide { min-width: 100%; height: 100%; }
+.slide img { width: 100%; height: 100%; object-fit: cover; opacity: 0.9; }
+.slide-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: transparent; border: none; font-size: 1.5rem; color: rgba(255, 255, 255, 0.6); cursor: pointer; z-index: 10; padding: 10px; }
+.next-btn { right: 10px; } .prev-btn { left: 10px; }
+
+.filter-container { display: flex; justify-content: center; gap: 15px; margin: 40px 0; }
+.filter-btn { background: var(--nav-bg); border: 1px solid var(--border-color); padding: 10px 25px; border-radius: 30px; cursor: pointer; color: var(--text-muted); font-weight: 600; transition: 0.3s; }
+.filter-btn.active { background: var(--primary); color: black !important; }
+
+.results-grid { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 25px; 
+    max-width: 1200px; 
+    margin: 40px auto; 
+    padding: 0 20px; 
+}
+.card { background: var(--glass-bg); border-radius: 12px; padding: 20px; border: 1px solid var(--glass-border); }
+.card img { width: 100%; height: 200px; object-fit: contain; background: white; border-radius: 8px; }
+.price { font-size: 1.5rem; font-weight: 700; color: var(--price-green); margin: 15px 0; }
+.buy-btn { display: block; text-align: center; background: var(--input-bg); padding: 10px; border-radius: 8px; text-decoration: none; color: var(--text-main); font-weight: 600; }
+
+/* ===========================
+   6. FOOTER & SUPPORT
+   =========================== */
+footer { margin-top: auto; text-align: center; padding: 1px 0; background: var(--nav-bg); border-top: 1px solid var(--glass-border); color: #ffffff; width: 100%; }
+.name { color: #ffffff; font-weight: 700; cursor: pointer; transition: 0.4s ease; display: inline-block; }
+.name:hover { text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); transform: translateY(-2px); }
+.code-credit { font-size: 0.8rem; opacity: 0.8; font-family: 'Courier New', Courier, monospace; letter-spacing: 0.2px; margin-top: 2px; }
+
+.support-main { flex: 1; max-width: 1200px; margin: 60px auto; padding: 0 20px; text-align: center; }
+.support-hero h1 { font-size: 2.5rem; margin-bottom: 30px; }
+.support-card { background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 40px; border-radius: 20px; transition: 0.3s; display: flex; flex-direction: column; align-items: center; gap: 15px; }
+.support-card i { font-size: 2.5rem; color: var(--price-green); }
+.rick-roll-btn { margin-top: 10px; padding: 10px 20px; background: var(--primary); color: black !important; text-decoration: none; font-weight: 700; border-radius: 8px; }
+.contact-inquiry { padding: 60px 20px; border-top: 1px solid var(--glass-border); }
+.support-email { display: block; font-size: 2rem; color: #ffffff; text-decoration: none; font-weight: 800; margin-top: 20px; transition: 0.4s ease; }
+.support-email:hover { text-shadow: 0 0 15px white; }
+
+/* ===========================
+   7. THE FIX: RESPONSIVENESS
+   =========================== */
+@media (max-width: 1024px) {
+    .nav-content { padding: 10px 20px; }
+    
+    /* Layout Ordering */
+    .logo { order: 1; }
+    .nav-links { order: 2; display: flex !important; gap: 10px; }
+    .nav-search-container { order: 3; flex: 1 1 100%; margin-top: 10px; }
+    
+    .btn-login { display: none !important; }
+    .results-grid { grid-template-columns: repeat(2, 1fr); padding: 0 15px; }
+    .slider-container { height: 250px; }
+}
+
+@media (max-width: 600px) {
+    .results-grid { grid-template-columns: 1fr; }
+    .slider-container { height: 200px; }
+    .support-email { font-size: 1.2rem; }
+}
